@@ -2,42 +2,34 @@
  * @Author: zhoutao mrzater@163.com
  * @Date: 2024-11-15 16:47:01
  * @LastEditors: zhoutao mrzater@163.com
- * @LastEditTime: 2024-11-27 17:19:53
+ * @LastEditTime: 2024-11-27 17:52:52
  * @FilePath: /client/src/components/Edit.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE 
  */
 import React, { useEffect, useState } from 'react';
 import { addStudentApi, getStudentInfoApi, editStudentApi } from '../api/student'
 import { useNavigate, useParams } from 'react-router-dom';
+const studentTemp = {
+    name: '',
+    age: '',
+    phone: '',
+    email: '',
+    education: '本科',
+    graduationschool: '',
+    profession: '',
+    profile: ''
+}
 function Edit(props) {
     const navigate = useNavigate()
     const { id } = useParams()
-    const [student, setStudent] = useState({
-        name: '',
-        age: '',
-        phone: '',
-        email: '',
-        education: '本科',
-        graduationschool: '',
-        profession: '',
-        profile: ''
-    });
+    const [student, setStudent] = useState(studentTemp);
     useEffect(() => {
         if (id) {
             getStudentInfoApi(id).then(resp => {
                 setStudent(resp.data)
             })
         } else {
-            setStudent({
-                name: '',
-                age: '',
-                phone: '',
-                email: '',
-                education: '本科',
-                graduationschool: '',
-                profession: '',
-                profile: ''
-            })
+            setStudent(studentTemp)
         }
     }, [id])
     // 更新学生信息
