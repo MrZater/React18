@@ -2,17 +2,15 @@
  * @Author: zhoutao mrzater@163.com
  * @Date: 2024-11-15 14:28:59
  * @LastEditors: zhoutao mrzater@163.com
- * @LastEditTime: 2024-11-27 16:54:20
+ * @LastEditTime: 2024-11-28 14:53:39
  * @FilePath: /projects/StuSys/client/src/App.jsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { Routes, Route, Navigate, NavLink } from "react-router-dom";
-import Home from "./components/Home";
-import About from "./components/About";
-import Edit from "./components/Edit";
-import Detail from "./components/Detail";
+import { NavLink } from "react-router-dom";
 import "./css/App.css";
+import RouterConfig from './router/Router'
 function App() {
+  
   return (
     <div id="app" className="container">
       <nav className=" navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -54,15 +52,7 @@ function App() {
       </nav>
       {/* 匹配的路由显示 */}
       <main className="content">
-        <Routes>
-          {/* 对应路由 */}
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/add" element={<Edit />} />
-          <Route path="/update/:id" element={<Edit />} />
-          <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/" element={<Navigate to="/home" replace />} />
-        </Routes>
+        <RouterConfig></RouterConfig>
       </main>
     </div>
   );
